@@ -1,0 +1,21 @@
+{
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "env": {
+    "COHERE_API_KEY": "@cohere-api-key",
+    "DATABASE_URL": "@database-url",
+    "REDIS_URL": "@redis-url"
+  },
+  "buildCommand": "make first-run",
+  "installCommand": "curl -sSL https://install.python-poetry.org | python3 - && poetry install --with setup,dev --verbose",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/main.py"
+    }
+  ]
+}
